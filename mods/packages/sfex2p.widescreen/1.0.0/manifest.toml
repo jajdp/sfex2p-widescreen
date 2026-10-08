@@ -1,0 +1,33 @@
+# Street Fighter EX2 Plus — Widescreen (16:9)
+# https://github.com/jajdp/sfex2p-widescreen
+#
+# This package only exposes the feature in the launcher's Mods list. What implements it is
+# the game-owned plugin in plugin/sfex2p_widescreen.c, which has to be compiled into the
+# game executable (PSXRecomp packages carry no native code by design). See docs/INSTALL.md.
+format_version = 5
+id = "sfex2p.widescreen"
+version = "1.0.0"
+name = "Widescreen (16:9)"
+author = "Recompilaciones"
+license = "PolyForm-Noncommercial-1.0.0"
+description = "16:9 widescreen for Street Fighter EX2 Plus: the stages fill the wide screen while 2D screens (logos, menus, character select, loading) stay 4:3 with side bars."
+resolver = "declarative"
+save_compatibility = "shared"
+
+[[author_link]]
+name = "Recompilaciones"
+url = "https://github.com/jajdp/sfex2p-widescreen"
+
+[[target]]
+game_id = "SLUS-01105"
+
+[[feature]]
+id = "widescreen"
+name = "Widescreen (16:9)"
+description = "Native-wide 16:9 during the fights. Turn it off to play in the original 4:3."
+group = "Visual"
+default_enabled = true
+
+[[plugin]]
+feature = "widescreen"
+id = "sfex2p.widescreen"

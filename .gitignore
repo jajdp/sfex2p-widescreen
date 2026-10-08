@@ -1,0 +1,42 @@
+# Never publish game material. None of this belongs in this repository.
+*.bin
+*.cue
+*.img
+*.iso
+*.chd
+*.pbp
+*.exe
+*.dll
+*.msix
+*.appx
+*.mcd
+*.mcr
+*.srm
+*.state
+*.sav
+
+# Runtime leftovers of a game project, in case the repo is cloned inside one
+build/
+build-*/
+saves/
+logs/
+disc/
+bios/
+mods/state.toml
+psx_freeze_dump_*.json
+psx_last_run_report.json
+overlay_captures*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+.DS_Store
