@@ -1,7 +1,7 @@
 # Street Fighter EX2 Plus — 16:9 de verdad
 
 Un mod de pantalla ancha para la recompilación estática
-[PSXRecomp](https://github.com/mstan) de *Street Fighter EX2 Plus* (PlayStation, 1999,
+[PSXRecomp](https://github.com/RetroPortingToolKit/psxrecomp) de *Street Fighter EX2 Plus* (PlayStation, 1999,
 `SLUS-01105`). Las peleas llenan la pantalla ancha **dibujando el fondo del escenario hasta
 los bordes**: sin estirar la imagen, sin tiras repetidas y sin píxeles viejos en los márgenes.
 
@@ -36,8 +36,9 @@ código del plugin, el paquete y el script que instala los dos.
 
 | | |
 |---|---|
-| Un proyecto PSXRecomp de Street Fighter EX2 Plus | la carpeta con `CMakeLists.txt` y `game.toml` |
+| [Un proyecto PSXRecomp de Street Fighter EX2 Plus](https://github.com/strider973/Street-Fighter-EX2-Plus-Recompiled) | la carpeta con `CMakeLists.txt` y `game.toml` |
 | Tu propio volcado del disco | NTSC-U, `SLUS-01105` |
+| Una BIOS retail SCPH-1001 | la pide ese proyecto (`openbios = false`), no este mod |
 | Un compilador de C capaz de construir ese proyecto | el plugin se compila dentro del ejecutable |
 | Python 3.8 o posterior | solo para el script de instalación |
 
@@ -80,6 +81,10 @@ docs/HOW-IT-WORKS.md       el ensanche del fondo y la reparación de la cadena, 
 
 Compilado y jugado en Windows y en una Xbox Series en modo desarrollador: 60 FPS, el fondo
 completo desde el primer cuadro de la demo de atracción y ninguna costura en los márgenes.
+
+Comprobado además desde cero el 2026-10-08: el instalador aplicado sobre un árbol del juego
+recién clonado (exactamente los cinco cambios documentados y ninguno más), recompilado, y
+activo al arrancar: `psxrecomp: mod selected fixed display aspect 16:9`.
 
 ## Créditos y licencia
 

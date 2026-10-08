@@ -8,6 +8,14 @@ Hace falta un proyecto PSXRecomp de Street Fighter EX2 Plus que ya compile y fun
 máquina: la carpeta con `CMakeLists.txt`, `game.toml` y tu `disc/`. Este repositorio no trae
 el juego, ni la imagen del disco, ni el framework.
 
+Ese proyecto es
+[strider973/Street-Fighter-EX2-Plus-Recompiled](https://github.com/strider973/Street-Fighter-EX2-Plus-Recompiled),
+construido sobre el framework [PSXRecomp](https://github.com/RetroPortingToolKit/psxrecomp)
+(clónalo con `--recurse-submodules`). Dos cosas que necesita y que este mod no puede darte: **tu
+propio volcado del disco** y **una BIOS retail SCPH-1001** —ese proyecto va con
+`openbios = false`, así que la OpenBIOS incluida no sirve—. Primero compílalo y hazlo arrancar;
+este mod es un cambio sobre esa compilación.
+
 El mod está hecho para la edición NTSC-U, `SLUS-01105`. El plugin comprueba cada palabra de
 instrucción original antes de escribir nada, así que en otra edición simplemente no hace nada,
 en vez de estropear el juego.

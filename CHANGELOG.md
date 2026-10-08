@@ -29,3 +29,10 @@ Mode (60 FPS, complete backdrop, no seams).
   [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md) §5.
 - Vertical seams in the margins caused by combining the widened loop with the framework's
   `nw_phase_backdrop` stretch. The installer now sets that option to `false`.
+
+### Documentation, same day
+
+Verified from scratch: the game cloned fresh from its own repository, the installer applied to
+that untouched tree (exactly the five promised changes, nothing else), the game rebuilt, and the
+feature confirmed active at boot — `mod selected fixed display aspect 16:9`. The install guide
+now also says where the game project comes from and that it needs a retail SCPH-1001 BIOS.

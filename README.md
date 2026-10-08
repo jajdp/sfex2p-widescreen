@@ -1,6 +1,6 @@
 # Street Fighter EX2 Plus — Widescreen (16:9)
 
-A real 16:9 mod for the [PSXRecomp](https://github.com/mstan) static recompilation of
+A real 16:9 mod for the [PSXRecomp](https://github.com/RetroPortingToolKit/psxrecomp) static recompilation of
 *Street Fighter EX2 Plus* (PlayStation, 1999, `SLUS-01105`). The fights fill a wide screen
 with **stage backdrop actually drawn out to the edges** — no stretching, no mirrored strips,
 no stale pixels in the margins.
@@ -36,8 +36,9 @@ holds the mod: a plugin source file, a mod package and the script that installs 
 
 | | |
 |---|---|
-| A PSXRecomp project for Street Fighter EX2 Plus | the folder with `CMakeLists.txt` and `game.toml` |
+| [A PSXRecomp project for Street Fighter EX2 Plus](https://github.com/strider973/Street-Fighter-EX2-Plus-Recompiled) | the folder with `CMakeLists.txt` and `game.toml` |
 | Your own disc dump | NTSC-U, `SLUS-01105` |
+| A retail SCPH-1001 BIOS | required by that project (`openbios = false`), not by this mod |
 | A C toolchain able to build that project | the plugin is compiled into the executable |
 | Python 3.8+ | only to run the installer script |
 
@@ -80,6 +81,10 @@ docs/HOW-IT-WORKS.md       the backdrop widening and the chain repair, in detail
 
 Built and played on Windows and on an Xbox Series in Developer Mode: 60 FPS, complete
 backdrop from the first frame of the attract demo, no seams in the margins.
+
+Verified from scratch on 2026-10-08: installer applied to a freshly cloned game tree (exactly
+the five documented changes, nothing else), rebuilt, and active at boot —
+`psxrecomp: mod selected fixed display aspect 16:9`.
 
 ## Credits and license
 
