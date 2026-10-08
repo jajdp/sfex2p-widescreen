@@ -22,6 +22,12 @@ en vez de estropear el juego.
 
 ## 1. Instalar los archivos
 
+Consigue el kit: descarga `sfex2p.widescreen-1.0.0.zip` de
+[la página de releases](https://github.com/jajdp/sfex2p-widescreen/releases/latest) y
+descomprímelo, o clona este repositorio —el contenido es el mismo—. Conserva la disposición
+tal como viene: el instalador lee el plugin y el paquete de su propia carpeta, relativos a sí
+mismo. Después, desde esa carpeta:
+
 ```sh
 python tools/apply_widescreen.py <ruta de la raíz del proyecto del juego>
 ```

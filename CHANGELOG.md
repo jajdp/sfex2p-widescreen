@@ -36,3 +36,7 @@ Verified from scratch: the game cloned fresh from its own repository, the instal
 that untouched tree (exactly the five promised changes, nothing else), the game rebuilt, and the
 feature confirmed active at boot — `mod selected fixed display aspect 16:9`. The install guide
 now also says where the game project comes from and that it needs a retail SCPH-1001 BIOS.
+
+Published as a release: `sfex2p.widescreen-1.0.0.zip`, a source kit with the plugin, the
+installer and the package. There is no binary to ship — the plugin is compiled into the game
+executable, which this project does not distribute.

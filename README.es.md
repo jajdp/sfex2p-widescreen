@@ -44,11 +44,15 @@ código del plugin, el paquete y el script que instala los dos.
 
 ## Instalación
 
+Se descarga la **[última versión publicada](https://github.com/jajdp/sfex2p-widescreen/releases/latest)**
+—un kit de código, no un binario—, se descomprime y, desde esa carpeta:
+
 ```sh
 python tools/apply_widescreen.py <ruta de la raíz del proyecto del juego>
 ```
 
-Y se recompila el juego. Los pasos completos, qué cambia el script y cómo deshacerlo están en
+Y se recompila el juego. (Clonar este repositorio vale igual: el kit son estos archivos.) Los
+pasos completos, qué cambia el script y cómo deshacerlo están en
 **[docs/INSTALL.es.md](docs/INSTALL.es.md)**.
 
 ¿Por qué hay que compilar? Porque los paquetes de mods de PSXRecomp no llevan código nativo, a

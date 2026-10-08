@@ -44,12 +44,16 @@ holds the mod: a plugin source file, a mod package and the script that installs 
 
 ## Install
 
+Download the **[latest release](https://github.com/jajdp/sfex2p-widescreen/releases/latest)** —
+a source kit, not a binary — extract it, and from that folder run:
+
 ```sh
 python tools/apply_widescreen.py <path-to-game-project-root>
 ```
 
-Then rebuild the game. Full steps, including what the script changes and how to undo it, are
-in **[docs/INSTALL.md](docs/INSTALL.md)**.
+Then rebuild the game. (A clone of this repository works just the same: the kit is these files.)
+Full steps, including what the script changes and how to undo it, are in
+**[docs/INSTALL.md](docs/INSTALL.md)**.
 
 Why a build step? PSXRecomp mod packages carry no native code by design: a feature that
 changes the display aspect has to be a *game-owned trusted plugin*, statically linked into
