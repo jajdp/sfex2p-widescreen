@@ -33,21 +33,22 @@ MARK = 'sfex2p.widescreen (Recompilaciones)'
 # before the public release is not reported as carrying a foreign [widescreen] block.
 KNOWN_MARKS = (MARK, 'Recompilaciones (2026-10-03): 16:9')
 
-CMAKE_OLD = '''    CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
-)'''
-CMAKE_NEW = '''    CODEGEN_SETUP_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/codegen_setup.c"
-        # ''' + MARK + ''': the game-owned widescreen plugin.
-        "${CMAKE_CURRENT_SOURCE_DIR}/sfex2p_widescreen.c"
-)'''
+# Where the plugin is registered. The anchor is the framework's own parameter name, not a copy
+# of the project's CMakeLists.txt: the plugin entry goes on the line after it, inside the list.
+CMAKE_ANCHOR = 'CODEGEN_SETUP_SOURCES'
+CMAKE_PLUGIN_LINES = (
+    '# ' + MARK + ': the game-owned widescreen plugin.',
+    '"${CMAKE_CURRENT_SOURCE_DIR}/sfex2p_widescreen.c"',
+)
 
-CMAKE_TAIL_OLD = '''            COMMENT "Staging ${_PSX_RUNTIME_CONFIG}"
-            VERBATIM)
-    endif()
-endforeach()
-'''
-CMAKE_TAIL_NEW = CMAKE_TAIL_OLD + '''
-# ''' + MARK + ''': the game's own mod packages (the widescreen feature), staged
-# after the framework's builtin catalog, which clears mods/packages first.
+# Appended at the end of the file, which is also what makes it correct (see the comment it
+# writes). Appending needs no anchor, so this installer copies nothing out of the project's
+# own CMakeLists.txt.
+CMAKE_STAGE_BLOCK = '''
+# ''' + MARK + ''': the game's own mod packages (the widescreen
+# feature). Kept last on purpose: POST_BUILD commands run in the order they are
+# declared, and the framework stages its builtin catalog by clearing mods/packages
+# first, so this has to come after it.
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/mods/packages")
     add_custom_command(TARGET psx-runtime POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -106,14 +107,18 @@ def main():
     eol, text = read_text(cmake)
     patched = text
     if 'sfex2p_widescreen.c' not in patched:
-        if patched.count(CMAKE_OLD) != 1:
-            sys.exit('CMakeLists.txt: CODEGEN_SETUP_SOURCES block not found (unsupported project layout)')
-        patched = patched.replace(CMAKE_OLD, CMAKE_NEW)
-        report.append('CMakeLists.txt: plugin added to CODEGEN_SETUP_SOURCES')
+        lines = patched.split('\n')
+        hits = [i for i, line in enumerate(lines) if CMAKE_ANCHOR in line]
+        if len(hits) != 1:
+            sys.exit('CMakeLists.txt: expected exactly one %s line, found %d '
+                     '(unsupported project layout)' % (CMAKE_ANCHOR, len(hits)))
+        at = hits[0]
+        pad = ' ' * (len(lines[at]) - len(lines[at].lstrip()) + 4)
+        lines[at + 1:at + 1] = [pad + line for line in CMAKE_PLUGIN_LINES]
+        patched = '\n'.join(lines)
+        report.append('CMakeLists.txt: plugin added to %s' % CMAKE_ANCHOR)
     if "the game's own mod packages" not in patched:
-        if patched.count(CMAKE_TAIL_OLD) != 1:
-            sys.exit('CMakeLists.txt: staging block not found (unsupported project layout)')
-        patched = patched.replace(CMAKE_TAIL_OLD, CMAKE_TAIL_NEW)
+        patched = patched.rstrip('\n') + '\n' + CMAKE_STAGE_BLOCK
         report.append('CMakeLists.txt: mods/packages staged next to the executable')
     if patched != text:
         pending.append(('text', cmake, patched.replace('\n', eol)))

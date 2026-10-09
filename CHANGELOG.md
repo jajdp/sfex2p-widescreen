@@ -40,3 +40,13 @@ now also says where the game project comes from and that it needs a retail SCPH-
 Published as a release: `sfex2p.widescreen-1.0.0.zip`, a source kit with the plugin, the
 installer and the package. There is no binary to ship — the plugin is compiled into the game
 executable, which this project does not distribute.
+
+### Installer, same day
+
+`tools/apply_widescreen.py` no longer carries any lines copied out of the game project's own
+`CMakeLists.txt`. It used to locate its two insertion points by matching those lines
+literally; it now anchors on the framework's parameter name (`CODEGEN_SETUP_SOURCES`) for the
+plugin entry, and simply appends the staging block at the end of the file — which is also
+where it belongs, since `POST_BUILD` commands run in declaration order and the framework's own
+staging clears `mods/packages` first. The result written into a game project is unchanged, and
+the release archive was replaced with this version.
