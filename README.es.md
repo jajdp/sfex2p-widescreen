@@ -97,4 +97,7 @@ Mod de **Recompilaciones**. Publicado bajo la
 en el que se enchufa.
 
 *Street Fighter EX2 Plus* es © Capcom / Arika. Este proyecto no está afiliado a ellos, ni a
-Sony, ni al autor de PSXRecomp, y no distribuye nada que les pertenezca.
+Sony, ni al autor de PSXRecomp, y no distribuye nada que les pertenezca. El detalle —qué hay y
+qué no hay aquí exactamente, y cómo pedir una retirada— está en
+**[NOTICE.es.md](NOTICE.es.md)**. Los titulares de derechos pueden escribir a
+**jajdpmail@gmail.com**.
