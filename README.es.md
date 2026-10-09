@@ -7,11 +7,10 @@ los bordes**: sin estirar la imagen, sin tiras repetidas y sin píxeles viejos e
 
 *(English: [README.md](README.md))*
 
-![La primera demo en 16:9, con el fondo completo y a 60 FPS](docs/images/xbox-fondo-arreglado.png)
-
-*En una Xbox Series en modo desarrollador. El texto está en español porque esa compilación
-llevaba además la traducción [sfex2p-es](https://github.com/jajdp/sfex2p-es); el mod del 16:9
-es independiente de ella.*
+*Aquí había una captura, y no está a propósito: era la pantalla de título del juego, que es sobre
+todo el logotipo y la marca de Capcom, y encabezar una página con arte ajeno no es lo que dice
+[`NOTICE.es.md`](NOTICE.es.md) que hace este proyecto. Lo que cambia el mod, medido cuadro a
+cuadro, está en [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) (en inglés).*
 
 ## Qué hace
 

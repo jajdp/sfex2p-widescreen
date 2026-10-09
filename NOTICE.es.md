@@ -38,8 +38,10 @@ se citan para esa verificación.
 mosaicos y su tabla de ordenación—, como tiene que hacer la documentación de cualquier mod. No
 contiene código del juego más allá de esas palabras.
 
-Las capturas de `docs/images/` muestran el juego en marcha, para documentar qué hace el mod.
-Siguen siendo propiedad de sus respectivos titulares.
+**Aquí no hay capturas del juego.** La que había —la pantalla de título— es sobre todo el
+logotipo y la marca de Capcom, así que se quitó: una captura se gana su sitio enseñando el
+trabajo, no por ser arte ajeno. Lo que queda en `docs/images/` es una captura del lanzador del
+propio framework, con este mod en su lista.
 
 ## Retirada y contacto
 

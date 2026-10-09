@@ -7,11 +7,10 @@ no stale pixels in the margins.
 
 *(Español: [README.es.md](README.es.md))*
 
-![The first demo match in 16:9, backdrop complete, 60 FPS](docs/images/xbox-fondo-arreglado.png)
-
-*Running on an Xbox Series in Developer Mode. The on-screen text is Spanish because this
-build also had the [sfex2p-es](https://github.com/jajdp/sfex2p-es) translation enabled; the
-widescreen mod is independent of it.*
+*There was a screenshot here, and it is gone on purpose: it was the game's title screen, which is
+mostly Capcom's logo and trademark, and leading a page with someone else's artwork is not what
+[`NOTICE.md`](NOTICE.md) says this project does. What the mod changes, measured frame by frame,
+is in [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).*
 
 ## What it does
 

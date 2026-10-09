@@ -36,8 +36,10 @@ verification.
 ordering table work — as any mod's documentation has to. It contains no game code beyond the
 words above.
 
-The screenshots under `docs/images/` show the game running, in order to document what the mod
-does. They remain the property of their respective owners.
+**There are no screenshots of the game here.** The one that used to be — the title screen — is
+mostly Capcom's logo and trademark, so it was removed: a screenshot earns its place by showing
+the work, not by being someone else's artwork. What is left under `docs/images/` is a shot of
+the framework's own launcher, with this mod listed in it.
 
 ## Takedown and contact
 
