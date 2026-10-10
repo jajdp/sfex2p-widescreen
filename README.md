@@ -7,10 +7,8 @@ no stale pixels in the margins.
 
 *(Español: [README.es.md](README.es.md))*
 
-*There was a screenshot here, and it is gone on purpose: it was the game's title screen, which is
-mostly Capcom's logo and trademark, and leading a page with someone else's artwork is not what
-[`NOTICE.md`](NOTICE.md) says this project does. What the mod changes, measured frame by frame,
-is in [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).*
+What the mod changes, measured frame by frame, is in
+[`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).
 
 ## What it does
 

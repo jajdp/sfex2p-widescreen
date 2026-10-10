@@ -2,6 +2,35 @@
 
 All notable changes to this mod. Dates are `YYYY-MM-DD`.
 
+## [1.0.1] — 2026-10-10
+
+A code-review pass over the three repositories of this project. The plugin's behaviour is
+unchanged.
+
+### Fixed
+
+- `tools/apply_widescreen.py` detected its own CMake block by a sentence of prose that the block
+  itself writes. Editing that comment would have silently broken idempotence, appending the block
+  again on every run. It now keys on a dedicated constant.
+- The installer promised atomic writes, but the two file copies used `shutil.copyfile`, which is
+  not atomic. Every write now goes through a temporary file and a single replace.
+
+### Changed
+
+- `LICENSE` now carries the **canonical** PolyForm Noncommercial 1.0.0 text from
+  polyformproject.org, which is what the `PolyForm-Noncommercial-1.0.0` identifier names; the copy
+  shipped before was an abridged variant missing the sections that let a recipient share and build
+  on this.
+- The plugin reads better: a dead `#define` the compiler flagged as unused, a redundant guard the
+  loop below already performed, and Spanish identifiers in otherwise English code are gone, along
+  with the debugging chronicle in the VBlank comment — the mechanism and the trap it warns about
+  stay, the measurements of one particular demo match moved out. It still compiles with
+  `-Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wunused-macros` without a single warning.
+- The installer no longer recognises a marker from before the public release, which only the
+  author's own tree could have carried.
+- One shared `.gitignore` across the three repositories, with the strictest protection of the
+  three: this one was missing `*.BIN` and `SCPH*`, the BIOS.
+
 ## [1.0.0] — 2026-10-08
 
 First public release. Developed and tested on Windows and on an Xbox Series in Developer

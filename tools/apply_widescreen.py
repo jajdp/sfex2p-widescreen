@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Install the sfex2p.widescreen mod into a Street Fighter EX2 Plus (PSXRecomp) game project.
 
 A PSXRecomp package carries no native code, so a mod that changes the display aspect has to
@@ -11,16 +10,15 @@ Usage:
 
 The project root is the folder that holds CMakeLists.txt and game.toml.
 
-Every change is guarded by a signature: running the script twice changes nothing. Writes are
-atomic and keep each file's existing line endings. Nothing is deleted, and the stock disc
-image is never touched.
+Every change is guarded by a signature: running the script twice changes nothing. Every write
+goes to a temporary file that then replaces the original in one step, and keeps that file's
+existing line endings. Nothing is deleted, and the stock disc image is never touched.
 
 Recompilaciones — https://github.com/jajdp/sfex2p-widescreen
 PolyForm Noncommercial License 1.0.0
 """
 import argparse
 import os
-import shutil
 import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,9 +27,6 @@ PACKAGE_SRC = os.path.join(REPO, 'mods', 'packages', 'sfex2p.widescreen', '1.0.0
 PACKAGE_REL = os.path.join('mods', 'packages', 'sfex2p.widescreen', '1.0.0', 'manifest.toml')
 
 MARK = 'sfex2p.widescreen (Recompilaciones)'
-# Markers written by earlier revisions of this installer, recognised so that a project patched
-# before the public release is not reported as carrying a foreign [widescreen] block.
-KNOWN_MARKS = (MARK, 'Recompilaciones (2026-10-03): 16:9')
 
 # Where the plugin is registered. The anchor is the framework's own parameter name, not a copy
 # of the project's CMakeLists.txt: the plugin entry goes on the line after it, inside the list.
@@ -44,6 +39,10 @@ CMAKE_PLUGIN_LINES = (
 # Appended at the end of the file, which is also what makes it correct (see the comment it
 # writes). Appending needs no anchor, so this installer copies nothing out of the project's
 # own CMakeLists.txt.
+#
+# CMAKE_STAGE_MARK is what tells this block apart on a second run: it has to be a literal that
+# appears inside the block and nowhere else, because CMAKE_PLUGIN_LINES carries MARK too.
+CMAKE_STAGE_MARK = 'COMMENT "Staging the game\'s mod packages"'
 CMAKE_STAGE_BLOCK = '''
 # ''' + MARK + ''': the game's own mod packages (the widescreen
 # feature). Kept last on purpose: POST_BUILD commands run in the order they are
@@ -80,10 +79,14 @@ def read_text(path):
 
 
 def write_atomic(path, text):
+    write_bytes_atomic(path, text.encode('utf-8'))
+
+
+def write_bytes_atomic(path, payload):
     os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
     tmp = path + '.tmp'
-    with open(tmp, 'w', encoding='utf-8', newline='') as f:
-        f.write(text)
+    with open(tmp, 'wb') as f:
+        f.write(payload)
     os.replace(tmp, path)
 
 
@@ -117,7 +120,7 @@ def main():
         lines[at + 1:at + 1] = [pad + line for line in CMAKE_PLUGIN_LINES]
         patched = '\n'.join(lines)
         report.append('CMakeLists.txt: plugin added to %s' % CMAKE_ANCHOR)
-    if "the game's own mod packages" not in patched:
+    if CMAKE_STAGE_MARK not in patched:
         patched = patched.rstrip('\n') + '\n' + CMAKE_STAGE_BLOCK
         report.append('CMakeLists.txt: mods/packages staged next to the executable')
     if patched != text:
@@ -128,7 +131,7 @@ def main():
     if '[widescreen]' not in text:
         pending.append(('text', game_toml, (text.rstrip('\n') + '\n' + GAME_BLOCK).replace('\n', eol)))
         report.append('game.toml: [widescreen] block added')
-    elif not any(mark in text for mark in KNOWN_MARKS):
+    elif MARK not in text:
         sys.exit('game.toml already has a different [widescreen] block: merge it by hand')
 
     for src, dst_rel in ((PLUGIN_SRC, 'sfex2p_widescreen.c'), (PACKAGE_SRC, PACKAGE_REL)):
@@ -149,8 +152,8 @@ def main():
 
     for kind, dst, payload in pending:
         if kind == 'copy':
-            os.makedirs(os.path.dirname(dst) or '.', exist_ok=True)
-            shutil.copyfile(payload, dst)
+            with open(payload, 'rb') as f:
+                write_bytes_atomic(dst, f.read())
         else:
             write_atomic(dst, payload)
 

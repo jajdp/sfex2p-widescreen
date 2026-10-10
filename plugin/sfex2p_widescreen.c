@@ -15,7 +15,7 @@
  * 14-row tile map, into two pre-linked packet buffers of 153 entries at
  * 0x800D0000 (other game data follows them). In 16:9 the revealed margins
  * (85 px per side) were never drawn, so they kept stale pixels from earlier
- * frames: repeated vertical strips. This plugin widens that loop by
+ * frames. This plugin widens that loop by
  * BG_EXTRA_COLS columns per side (the map index wraps at 64 columns, as the
  * game's own scroll does) and moves the packets to two larger buffers
  * (9 rows x 23 columns) in the GPU-DMA mod aperture. The patched function
@@ -26,8 +26,7 @@
 #define BG_EXTRA_COLS 3u                          /* per side: ceil(85 / 32) */
 #define BG_ROWS       9u                          /* the game's row limit */
 #define BG_COLS       (17u + 2u * BG_EXTRA_COLS)
-#define BG_PRIMS      (BG_ROWS * BG_COLS)         /* 207 */
-#define BG_PRIMS_GAME 153u                        /* what the game links by itself (its 0x17E8-byte buffers) */
+#define BG_PRIMS      (BG_ROWS * BG_COLS)         /* 207, against the 153 the game links by itself */
 #define BG_PRIM_BYTES 40u                         /* tag + 9 words */
 #define BG_STRIDE     0x4000u                     /* per buffer: a power of two >= 207 * 40 */
 #define BG_BASE       0x80F00000u                 /* the aperture's first allocation (lui s7, 0x80F0) */
@@ -90,37 +89,31 @@ static void sfex2p_widescreen_activate(void) {
  * the first stage, so the function is never mid-run when it is patched. */
 static void sfex2p_widescreen_vblank(void) {
     if (!s_bg_base) return;
-    /* ONE link breaks per frame, and it is not in a fixed place. AddPrims rewrites the tag of the LAST packet
-     * the backdrop used so the block chains into the rest of the ordering table (characters, HUD), and the game
-     * repairs that one link on the next frame — but only if its own table still remembers it. When a frame
+    /* Exactly one link breaks per frame, in no fixed place: AddPrims rewrites the tag of the LAST packet the
+     * backdrop used, so the block chains into the rest of the ordering table (characters, HUD), and the game
+     * repairs that link on the next frame — but only while its own table still remembers it. On a frame that
      * draws no backdrop at all (the transitions around a match) the table is cleared to -1 and the break is
-     * forgotten: the stale jump to an old ordering table stays in the middle of the chain, and from then on the
-     * GPU leaves the backdrop there. Measured on 2026-10-07 in the first demo match (Dhalsim vs Blanka): the
-     * loop filled 138 packets, the chain jumped out at packet 68 (to 0x801FC2EC) and only 69 tiles were drawn —
-     * the stage's lower half stayed black until something blanked the buffer.
-     * ⚠ Relinking the whole buffer is NOT the fix: the link the table points at is what joins the backdrop to
-     * everything else, so rewriting it leaves the game with the stage and nothing else — no characters, no
-     * title letters (tried 2026-10-06 and again 2026-10-07, both reverted). Repair only the stale jumps BEFORE
-     * that packet, which belong to frames already gone. */
+     * forgotten: a stale jump into an ordering table of a past frame stays in the middle of the chain, and the
+     * GPU stops there, leaving the lower part of the stage black.
+     * ⚠ Relinking the whole buffer is NOT the fix. The link the table points at is what joins the backdrop to
+     * everything else, so rewriting it leaves the game with the stage and nothing else: no characters, no title
+     * letters. Repair only the stale jumps BEFORE that packet, which belong to frames already gone. */
     for (uint32_t b = 0; b < 2u; b++) {
         const uint32_t buf = s_bg_base + b * BG_STRIDE;
         const uint32_t fin = buf + BG_PRIMS * BG_PRIM_BYTES;
         if (psx_mod_read_word(buf) == 0u) { bg_link_buffer(buf); continue; }
-        /* The packet the game's table points at is the one AddPrims has just chained into the rest of the
-         * ordering table: that one is never touched (touching it leaves the game with the stage and nothing
-         * else). Any jump BEFORE it is a stale link into an ordering table of a past frame, and those are
-         * what cut the backdrop short: repair them. */
-        const uint32_t ultimo = psx_mod_read_word(BG_LAST_TABLE + b * 4u);
-        if (ultimo < buf || ultimo >= fin || ((ultimo - buf) % BG_PRIM_BYTES) != 0u) continue;
-        const uint32_t tope = (ultimo - buf) / BG_PRIM_BYTES;
-        for (uint32_t k = 0; k < tope; k++) {
+        const uint32_t last = psx_mod_read_word(BG_LAST_TABLE + b * 4u);
+        if (last < buf || last >= fin || ((last - buf) % BG_PRIM_BYTES) != 0u) continue;
+        const uint32_t upto = (last - buf) / BG_PRIM_BYTES;
+        for (uint32_t k = 0; k < upto; k++) {
             const uint32_t p = buf + k * BG_PRIM_BYTES;
             const uint32_t next = p + BG_PRIM_BYTES;
             if ((psx_mod_read_word(p) & 0x00FFFFFFu) != (next & 0x00FFFFFFu))
                 psx_mod_write_word(p, (9u << 24) | (next & 0x00FFFFFFu));
         }
     }
-    if (psx_mod_read_word(k_bg_code[0].addr) != k_bg_code[0].orig) return;
+    /* Every original word has to be in RAM before any is written: a reload or a restored state
+     * leaves the function half patched otherwise. */
     for (uint32_t i = 0; i < BG_CODE_WORDS; i++)
         if (psx_mod_read_word(k_bg_code[i].addr) != k_bg_code[i].orig) return;
     for (uint32_t i = 0; i < BG_CODE_WORDS; i++)

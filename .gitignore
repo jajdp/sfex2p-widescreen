@@ -1,24 +1,51 @@
-# Never publish game material. None of this belongs in this repository.
+# Nothing that belongs to the game ever goes in here. Blocked by extension, so it cannot slip in
+# by accident, and not as a substitute for reading NOTICE.md.
+
+# disc images and dumps
 *.bin
+*.BIN
 *.cue
-*.img
 *.iso
+*.img
 *.chd
 *.pbp
+*.ecm
+
+# BIOS
+*.rom
+SCPH*
+scph*
+
+# executables, debug info and packages
 *.exe
 *.dll
+*.pdb
+*.ilk
 *.msix
+*.msixbundle
 *.appx
+*.appxbundle
+*.appxsym
+*.appxupload
+
+# signing certificates: yours is yours
+*.pfx
+*.p12
+*.cer
+*.snk
+
+# saves and states
 *.mcd
 *.mcr
 *.srm
-*.state
 *.sav
+*.pst
+*.state
+saves/
 
-# Runtime leftovers of a game project, in case the repo is cloned inside one
+# leftovers of a game project, in case this is cloned inside one
 build/
 build-*/
-saves/
 logs/
 disc/
 bios/
@@ -33,10 +60,13 @@ __pycache__/
 .venv/
 venv/
 
-# Editors and OS
+# editors and OS
+.vs/
 .vscode/
 .idea/
 *.swp
+*.log
+*.tmp
 Thumbs.db
 desktop.ini
 .DS_Store

@@ -7,10 +7,8 @@ los bordes**: sin estirar la imagen, sin tiras repetidas y sin píxeles viejos e
 
 *(English: [README.md](README.md))*
 
-*Aquí había una captura, y no está a propósito: era la pantalla de título del juego, que es sobre
-todo el logotipo y la marca de Capcom, y encabezar una página con arte ajeno no es lo que dice
-[`NOTICE.es.md`](NOTICE.es.md) que hace este proyecto. Lo que cambia el mod, medido cuadro a
-cuadro, está en [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) (en inglés).*
+Lo que cambia el mod, medido cuadro a cuadro, está en
+[`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) (en inglés).
 
 ## Qué hace
 
