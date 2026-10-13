@@ -28,9 +28,11 @@ descomprímelo, o clona este repositorio —el contenido es el mismo—. Conserv
 tal como viene: el instalador lee el plugin y el paquete de su propia carpeta, relativos a sí
 mismo.
 
-Después, abre una terminal **en esa carpeta** —en Windows: pulsa la tecla Windows, escribe
-`powershell`, pulsa Enter y ve a ella con `cd "<la ruta>"`; en Linux o macOS, cualquier
-terminal— y escribe:
+Después:
+
+> **Dónde se escribe:** en **PowerShell** —pulsa la tecla **Windows**, escribe `powershell` y
+> pulsa **Enter**—, en una ventana **normal**: no hace falta «ejecutar como administrador»,
+> desde la carpeta de este repositorio.
 
 ```powershell
 python tools/apply_widescreen.py <ruta de la raíz del proyecto del juego>

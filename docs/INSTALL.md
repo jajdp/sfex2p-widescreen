@@ -26,9 +26,11 @@ Get the kit: download `sfex2p.widescreen-1.0.0.zip` from
 or clone this repository — the contents are the same. Keep the layout as it is: the installer
 reads the plugin and the package from its own folder, relative to itself.
 
-Then open a terminal **in that folder** — on Windows: press the Windows key, type
-`powershell`, press Enter and go there with `cd "<the path>"`; on Linux or macOS, any
-terminal — and type:
+Then:
+
+> **Where to type this:** in **PowerShell** — press the **Windows** key, type `powershell` and
+> press **Enter** — in an **ordinary** window: you do not need "run as administrator", from this
+> repository's folder.
 
 ```powershell
 python tools/apply_widescreen.py <path-to-game-project-root>

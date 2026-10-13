@@ -44,9 +44,11 @@ código del plugin, el paquete y el script que instala los dos.
 Se descarga la **[última versión publicada](https://github.com/jajdp/sfex2p-widescreen/releases/latest)**
 —un kit de código, no un binario—, se descomprime y, desde esa carpeta:
 
-En una terminal, desde la carpeta de este repositorio: **PowerShell** en Windows, cualquier
-shell en Linux o macOS. El §1 de [`docs/INSTALL.es.md`](docs/INSTALL.es.md) lo explica paso a
-paso:
+El §1 de [`docs/INSTALL.es.md`](docs/INSTALL.es.md) lo explica paso a paso:
+
+> **Dónde se escribe:** en **PowerShell** —pulsa la tecla **Windows**, escribe `powershell` y
+> pulsa **Enter**—, en una ventana **normal**: no hace falta «ejecutar como administrador»,
+> desde la carpeta de este repositorio.
 
 ```powershell
 python tools/apply_widescreen.py <ruta de la raíz del proyecto del juego>
