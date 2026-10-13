@@ -11,9 +11,14 @@ All notable changes to this mod. Dates are `YYYY-MM-DD`.
   PowerShell. None of that is obvious if this is not your trade. Each block now names its terminal
   and the folder it runs from, and blocks that are *output* rather than commands are marked as
   such, so there is no guessing about what you are supposed to type.
-- **It is spelled out that administrator is not needed — and that using it breaks one step.** The
-  certificate is created in the store of whichever user runs the command, so creating it in an
-  elevated window puts it where `signtool`, running as you, will not find it.
+- **It is spelled out that administrator is not needed.** Nothing here asks for an elevated
+  window: the installer writes into your own copy of the game project, and the build that follows
+  is an ordinary one.
+
+## [1.0.2] — 2026-10-13
+
+### Added
+
 - **`docs/HOW-IT-WORKS.es.md`.** The README, the NOTICE and the install guide were already
   bilingual; the document that explains how the mod actually works — the disassembled backdrop
   loop, the 22 patched instruction words and the orphan link — was English-only. The Spanish
