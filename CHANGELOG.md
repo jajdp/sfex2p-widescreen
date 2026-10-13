@@ -2,7 +2,7 @@
 
 All notable changes to this mod. Dates are `YYYY-MM-DD`.
 
-## [Unreleased]
+## [1.0.3] — 2026-10-13
 
 ### Added
 
