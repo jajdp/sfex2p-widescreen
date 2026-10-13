@@ -8,7 +8,7 @@ los bordes**: sin estirar la imagen, sin tiras repetidas y sin píxeles viejos e
 *(English: [README.md](README.md))*
 
 Lo que cambia el mod, medido cuadro a cuadro, está en
-[`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md) (en inglés).
+[`docs/HOW-IT-WORKS.es.md`](docs/HOW-IT-WORKS.es.md) (en inglés).
 
 ## Qué hace
 

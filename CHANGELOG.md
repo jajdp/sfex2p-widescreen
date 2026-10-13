@@ -2,6 +2,15 @@
 
 All notable changes to this mod. Dates are `YYYY-MM-DD`.
 
+## [Unreleased]
+
+### Added
+
+- **`docs/HOW-IT-WORKS.es.md`.** The README, the NOTICE and the install guide were already
+  bilingual; the document that explains how the mod actually works — the disassembled backdrop
+  loop, the 22 patched instruction words and the orphan link — was English-only. The Spanish
+  README and NOTICE now link to the Spanish one.
+
 ## [1.0.1] — 2026-10-10
 
 A code-review pass over the three repositories of this project. The plugin's behaviour is

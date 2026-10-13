@@ -1,5 +1,7 @@
 # How the widescreen mod works
 
+*(Español: [HOW-IT-WORKS.es.md](HOW-IT-WORKS.es.md))*
+
 Everything here applies to Street Fighter EX2 Plus NTSC-U (`SLUS-01105`), whose executable
 loads at `0x80130000` (file offset `0x800`). The same engine powers *Street Fighter EX Plus
 Alpha*, so the shapes — if not the addresses — carry over.
