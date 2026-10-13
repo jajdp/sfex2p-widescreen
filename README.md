@@ -44,7 +44,10 @@ holds the mod: a plugin source file, a mod package and the script that installs 
 Download the **[latest release](https://github.com/jajdp/sfex2p-widescreen/releases/latest)** —
 a source kit, not a binary — extract it, and from that folder run:
 
-```sh
+In a terminal, from this repository's folder — **PowerShell** on Windows, any shell on Linux
+or macOS. [`docs/INSTALL.md`](docs/INSTALL.md) §1 walks through it:
+
+```powershell
 python tools/apply_widescreen.py <path-to-game-project-root>
 ```
 
@@ -70,7 +73,7 @@ failed attempts — in **[docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md)**.
 
 ## Layout
 
-```
+```text
 mods/packages/sfex2p.widescreen/1.0.0/manifest.toml   the mod package (the launcher toggle)
 plugin/sfex2p_widescreen.c                            the game-owned plugin (compiled in)
 tools/apply_widescreen.py                             installs both into a game project

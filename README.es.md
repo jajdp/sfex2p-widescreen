@@ -44,7 +44,11 @@ código del plugin, el paquete y el script que instala los dos.
 Se descarga la **[última versión publicada](https://github.com/jajdp/sfex2p-widescreen/releases/latest)**
 —un kit de código, no un binario—, se descomprime y, desde esa carpeta:
 
-```sh
+En una terminal, desde la carpeta de este repositorio: **PowerShell** en Windows, cualquier
+shell en Linux o macOS. El §1 de [`docs/INSTALL.es.md`](docs/INSTALL.es.md) lo explica paso a
+paso:
+
+```powershell
 python tools/apply_widescreen.py <ruta de la raíz del proyecto del juego>
 ```
 
@@ -70,7 +74,7 @@ Eso último es lo delicado, y está contado —con las mediciones y los dos inte
 
 ## Estructura
 
-```
+```text
 mods/packages/sfex2p.widescreen/1.0.0/manifest.toml   el paquete del mod (el interruptor)
 plugin/sfex2p_widescreen.c                            el plugin del juego (se compila dentro)
 tools/apply_widescreen.py                             instala los dos en un proyecto del juego

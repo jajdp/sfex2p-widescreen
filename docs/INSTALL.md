@@ -24,10 +24,13 @@ rather than corrupting the game.
 Get the kit: download `sfex2p.widescreen-1.0.0.zip` from
 [the releases page](https://github.com/jajdp/sfex2p-widescreen/releases/latest) and extract it,
 or clone this repository — the contents are the same. Keep the layout as it is: the installer
-reads the plugin and the package from its own folder, relative to itself. Then, from that
-folder:
+reads the plugin and the package from its own folder, relative to itself.
 
-```sh
+Then open a terminal **in that folder** — on Windows: press the Windows key, type
+`powershell`, press Enter and go there with `cd "<the path>"`; on Linux or macOS, any
+terminal — and type:
+
+```powershell
 python tools/apply_widescreen.py <path-to-game-project-root>
 ```
 
