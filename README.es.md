@@ -10,6 +10,9 @@ los bordes**: sin estirar la imagen, sin tiras repetidas y sin píxeles viejos e
 Lo que cambia el mod, medido cuadro a cuadro, está en
 [`docs/HOW-IT-WORKS.es.md`](docs/HOW-IT-WORKS.es.md) (en inglés).
 
+> **Dónde se probó:** en Windows y en una **Xbox Series X** en modo desarrollador, a través del port
+> UWP de este juego. En una Series S **nunca** se ha probado: nada de aquí se ha medido en una.
+
 ## Qué hace
 
 - **16:9 en las peleas.** El 3D del juego se dibuja ancho de verdad: se ensancha el campo de
@@ -86,7 +89,7 @@ docs/HOW-IT-WORKS.md       el ensanche del fondo y la reparación de la cadena, 
 
 ## Estado
 
-Compilado y jugado en Windows y en una Xbox Series en modo desarrollador: 60 FPS, el fondo
+Compilado y jugado en Windows y en una Xbox Series X en modo desarrollador: 60 FPS, el fondo
 completo desde el primer cuadro de la demo de atracción y ninguna costura en los márgenes.
 
 Comprobado además desde cero el 2026-10-08: el instalador aplicado sobre un árbol del juego

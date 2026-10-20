@@ -10,6 +10,9 @@ no stale pixels in the margins.
 What the mod changes, measured frame by frame, is in
 [`docs/HOW-IT-WORKS.md`](docs/HOW-IT-WORKS.md).
 
+> **Where it was tested:** on Windows, and on an **Xbox Series X** in Developer Mode through the UWP
+> port of this game. A Series S has **never** been tried — nothing here has been measured on one.
+
 ## What it does
 
 - **16:9 during the fights.** The game's own 3D gameplay is rendered native-wide: a wider
@@ -86,7 +89,7 @@ docs/HOW-IT-WORKS.md       the backdrop widening and the chain repair, in detail
 
 ## Status
 
-Built and played on Windows and on an Xbox Series in Developer Mode: 60 FPS, complete
+Built and played on Windows and on an Xbox Series X in Developer Mode: 60 FPS, complete
 backdrop from the first frame of the attract demo, no seams in the margins.
 
 Verified from scratch on 2026-10-08: installer applied to a freshly cloned game tree (exactly
