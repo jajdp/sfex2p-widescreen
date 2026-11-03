@@ -98,6 +98,16 @@ activo al arrancar: `psxrecomp: mod selected fixed display aspect 16:9`.
 
 ## Créditos y licencia
 
+**Casi nada de lo que hace que esto funcione es nuestro.** Este repositorio es una receta que une el trabajo de otros; sin cualquiera de estas piezas no habría port.
+
+| Qué hace | Quién lo hizo | Licencia |
+|---|---|---|
+| **[psxrecomp](https://github.com/RetroPortingToolKit/psxrecomp)** — el ecosistema de recompilación estática de PlayStation | **RetroPortingToolKit** | PolyForm Noncommercial 1.0.0 |
+| **[Street-Fighter-EX2-Plus-Recompiled](https://github.com/strider973/Street-Fighter-EX2-Plus-Recompiled)** — recompila *Street Fighter EX2 Plus* | **strider973** | none declared |
+
+**La receta de empaquetado, las herramientas y esta documentación** son de **Recompilaciones**.
+
+
 Mod de **Recompilaciones**. Publicado bajo la
 [PolyForm Noncommercial License 1.0.0](LICENSE), la misma licencia del framework PSXRecomp
 en el que se enchufa.
